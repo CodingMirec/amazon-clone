@@ -1,11 +1,30 @@
 import React from "react";
 import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Header from "./Header";
+import Home from "./Home";
+import Checkout from "./Checkout";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Let's build an AMAZON Clone with React JS</h1>
-    </div>
+    <Router>
+      <div className="app">
+        <Switch>
+          <Route path="/checkout">
+            <Header />
+            <Checkout />
+          </Route>
+          <Route path="/login">
+            <h1>Login page</h1>
+          </Route>
+          {/* This is deafault route */}
+          <Route path="/">
+            <Header />
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
