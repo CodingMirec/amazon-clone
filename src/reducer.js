@@ -23,13 +23,14 @@ function reducer(state, action) {
 
       if (index >= 0) {
         //item exists in basket, remove it...
+        newBasket.splice(index, 1);
       } else {
         console.warn(
           `Cant remove product (id: ${action.id}) as its not in the basket`
         );
       }
 
-      return { state };
+      return { ...state, basket: newBasket };
     default:
       return state;
   }
