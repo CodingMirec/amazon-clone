@@ -8,6 +8,7 @@ import Header from "./Header";
 import Home from "./Home";
 import Checkout from "./Checkout";
 import Login from "./Login";
+import Payment from "./Payment";
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -49,6 +50,10 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/payment">
+            <Header />
+            <Payment />
           </Route>
           {/* This is deafault route */}
           <Route path="/">
