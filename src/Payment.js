@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useStateValue } from "./StateProvider";
 import { Link } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { getBasketTotal } from "./reducer";
 import CurrencyFormat from "react-currency-format";
 
 import CheckoutProduct from "./CheckoutProduct";
