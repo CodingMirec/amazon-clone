@@ -15,7 +15,26 @@ app.use(cors({ origin: true }));
 app.use(express.json());
 
 //API routes
-app.get("/", (request, response) => res.status(200).send("hello world"));
+app.get("/", (request, response) => response.status(200).send("hello world"));
+
+app.post("/payments/create", async (request, response) => {
+  const total = request.query.total;
+
+  console.log("Payment Request Recieved >>>> ", total);
+
+  const paymentIntent = await stripe.paymentIntent.create({
+    amount: total,
+    currency: "usd",
+  });
+
+  //OK - Created
+  response.status(201).send({
+    clientSecret: paymentIntent.client_secret,
+  });
+});
 
 //Listen Command
 exports.api = functions.https.onRequest(app);
+
+//Example endpoint
+//http://localhost:5001/mirec--clone/us-central1/api
