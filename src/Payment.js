@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useStateValue } from "./StateProvider";
 import { Link } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
@@ -15,14 +15,24 @@ function Payment() {
   const stripe = useStripe();
   const elements = useElements();
 
+  const [succeeded, seSucceeded] = useState(false);
+  const [processing, setProcessing] = useState("");
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(true);
+  const [clientSecret, setClientSecret] = useState(true);
 
-  const handleSubmit = (e) => {};
+  useEffect(() => {}, [basket]);
 
-  const handleChange = (e) => {
-    setDisabled(e.empty);
-    setError(e.error ? e.error.message : "");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setProcessing(true);
+
+    // const payload = await stripe
+  };
+
+  const handleChange = (event) => {
+    setDisabled(event.empty);
+    setError(event.error ? event.error.message : "");
   };
 
   return (
@@ -85,7 +95,12 @@ function Payment() {
                   thousandSeparator={true}
                   prefix={"$"}
                 />
+                <button disabled={processing || disabled || succeeded}>
+                  <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
+                </button>
               </div>
+
+              {error && <div>{error}]</div>}
             </form>
           </div>
         </div>
