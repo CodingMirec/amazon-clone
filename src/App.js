@@ -11,6 +11,7 @@ import Home from "./Home";
 import Checkout from "./Checkout";
 import Login from "./Login";
 import Payment from "./Payment";
+import Orders from "./Orders";
 
 const promise = loadStripe(
   "pk_test_51Hdfv3CvqKP3FC1OCbBfOJDDr9NDA1DRn1LkGxG2Nfp5UW65e9y5z4Z7S6juYMDyZgfrheS1lO9QImF9dRRSEuyF00ulWp1luf"
@@ -49,17 +50,20 @@ function App() {
     <Router>
       <div className="app">
         <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
           <Route path="/checkout">
             <Header />
             <Checkout />
-          </Route>
-          <Route path="/login">
-            <Login />
           </Route>
           <Route path="/payment">
             <Header />
             <Elements stripe={promise}>
               <Payment />
+              <Route path="/orders">
+                <Orders />
+              </Route>
             </Elements>
           </Route>
           {/* This is deafault route */}
