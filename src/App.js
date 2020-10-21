@@ -61,10 +61,11 @@ function App() {
             <Header />
             <Elements stripe={promise}>
               <Payment />
-              <Route path="/orders">
-                <Orders />
-              </Route>
             </Elements>
+          </Route>
+          <Route path="/orders">
+            <Header />
+            <Orders />
           </Route>
           {/* This is deafault route */}
           <Route path="/">
